@@ -1,5 +1,6 @@
 package com.vanndeth.phoneshopmgt.service.implement;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,21 +32,6 @@ public class BrandServiceImplement implements BrandService {
 
 	@Override
 	public Brand getById(Integer id) {
-		
-//		Optional<Brand> brandOptional = brandRepository.findById(id);
-//		if(brandOptional.isPresent()) {
-//			return brandOptional.get();
-//		}
-		
-//		throw new HttpClientErrorException(HttpStatus.NOT_FOUND, "Brand with id = "+id+" not found");
-//		throw new HttpClientErrorException(HttpStatus.NOT_FOUND, "Brand with id = %d not found".formatted(id));
-		
-//		return brandRepository.findById(id)
-//				.orElseThrow(() -> new HttpClientErrorException(HttpStatus.NOT_FOUND, String.format("Brand with id = %d not found", id)));
-	
-//		return brandRepository.findById(id)
-//				.orElseThrow(() -> new ApiException(HttpStatus.NOT_FOUND, String.format("Brand with id = %d not found", id)));
-		
 		return brandRepository.findById(id)
 				.orElseThrow(() -> new ResourceNotFoundException("Brand", id));
 	}
@@ -56,6 +42,24 @@ public class BrandServiceImplement implements BrandService {
 		Brand brand = getById(id);
 		brand.setName(newBrand.getName());
 		return brandRepository.save(brand);
+	}
+
+	@Override
+	public List<Brand> getBrands() {
+		List<Brand> brands = brandRepository.findAll();
+		return brands;
+	}
+
+	@Override
+	public List<Brand> getBrands(String name) {
+		List<Brand> brands = brandRepository.findByNameIgnoreCaseStartingWith(name);
+		return brands;
+	}
+
+	@Override
+	public List<Brand> getByName(String name) {
+		List<Brand> brands = brandRepository.findByNameIgnoreCaseContaining(name);
+		return brands;
 	}
 
 

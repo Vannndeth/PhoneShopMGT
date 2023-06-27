@@ -1,5 +1,8 @@
 package com.vanndeth.phoneshopmgt.controller;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -8,6 +11,8 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.vanndeth.phoneshopmgt.dto.BrandDTO;
@@ -41,7 +46,34 @@ public class BrandController {
 		Brand brand = BrandMapper.INSTANCE.toBrand(brandDTO);
 		Brand newBrand = brandService.update(brandId, brand);
 		return ResponseEntity.ok(BrandMapper.INSTANCE.toBrandDTO(newBrand));
-		
 	}
+	
+	@GetMapping
+	public ResponseEntity<?> getBrands() {
+		List<BrandDTO> brands = brandService.getBrands()
+			.stream()
+			.map(brand -> BrandMapper.INSTANCE.toBrandDTO(brand))
+			.collect(Collectors.toList());
+		
+		return ResponseEntity.ok(brands);
+	}
+	
+	@GetMapping("/filter")
+	public ResponseEntity<?> getBrandsByName(@RequestParam("name") String name) {
+		List<BrandDTO> brands = brandService.getBrands(name)
+			.stream()
+			.map(brand -> BrandMapper.INSTANCE.toBrandDTO(brand))
+			.collect(Collectors.toList());
+		return ResponseEntity.ok(brands);
+	}
+	
+	@GetMapping("/name")
+	public ResponseEntity<?> getByName(@RequestParam("name") String name){
+		List<Brand> brands = brandService.getByName(name);
+		return ResponseEntity.ok(brands);
+				
+	}
+ 	
+	
 
 }
