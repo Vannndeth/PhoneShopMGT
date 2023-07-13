@@ -8,6 +8,7 @@ class PhoneShopMgtApplicationTests {
 
 	@Test
 	void contextLoads() {
+		
 	}
 
 }

@@ -53,11 +53,7 @@ public class BrandController {
 		Brand newBrand = brandService.update(brandId, brand);
 		return ResponseEntity.ok(BrandMapper.INSTANCE.toBrandDTO(newBrand));
 	}
-	/*
-	Error because com.vanndeth.phoneshopmgt.controller.BrandController#getBrands()
-	to {GET [/brands]}: There is already 'brandController' bean method
-	com.vanndeth.phoneshopmgt.controller.BrandController#getBrands(Map) mapped.
-	*/
+	
 	@GetMapping("/")
 	public ResponseEntity<?> getBrands() {
 		List<BrandDTO> brands = brandService.getBrands()
@@ -67,18 +63,7 @@ public class BrandController {
 		
 		return ResponseEntity.ok(brands);
 	}
-	/*
-	@GetMapping
-	public ResponseEntity<?> getBrands(@RequestParam Map<String, String> params) {
-		List<BrandDTO> brandDTOs = brandService.getBrands(params)
-			.stream()
-			.map(brand -> BrandMapper.INSTANCE.toBrandDTO(brand))
-			.collect(Collectors.toList());
-		
-		return ResponseEntity.ok(brandDTOs);
-		
-	}
-	*/
+	
 	@GetMapping
 	public ResponseEntity<?> getBrandsPagination(@RequestParam Map<String, String> params) {
 		Page<Brand> page = brandService.getBrandsPagination(params);
