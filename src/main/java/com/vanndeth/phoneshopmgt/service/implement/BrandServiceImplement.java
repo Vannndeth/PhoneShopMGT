@@ -89,12 +89,5 @@ public class BrandServiceImplement implements BrandService {
 		return page;
 	}
 	
-	/*
-	@Override
-	public List<Brand> findByNameLike(String name) {
-		List<Brand> brand = brandRepository.findByNameLike(name);
-		return brand;
-	}
-	*/
 	
 }
