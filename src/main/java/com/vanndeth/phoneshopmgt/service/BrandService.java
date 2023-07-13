@@ -11,6 +11,7 @@ public interface BrandService {
 	Brand create(Brand brand);
 	Brand getById(Integer id);
 	Brand update(Integer id, Brand newBrand);
+//	List<Brand> findByNameLike(String name);
 	List<Brand> getBrands();
 	List<Brand> getBrands(Map<String, String> params);
 	Page<Brand> getBrandsPagination(Map<String, String> params);

@@ -53,6 +53,14 @@ public class BrandController {
 		Brand newBrand = brandService.update(brandId, brand);
 		return ResponseEntity.ok(BrandMapper.INSTANCE.toBrandDTO(newBrand));
 	}
+	
+	/*
+	@GetMapping("/name")
+	public ResponseEntity<?> findByNameLike(String name) {
+		List<Brand> brand = brandService.findByNameLike(name);
+		return ResponseEntity.ok(brand);
+	}
+	*/
 	/*
 	Error because com.vanndeth.phoneshopmgt.controller.BrandController#getBrands()
 	to {GET [/brands]}: There is already 'brandController' bean method
