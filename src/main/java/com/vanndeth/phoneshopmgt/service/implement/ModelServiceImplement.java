@@ -1,5 +1,7 @@
 package com.vanndeth.phoneshopmgt.service.implement;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 import com.vanndeth.phoneshopmgt.entity.Model;
@@ -18,6 +20,12 @@ public class ModelServiceImplement implements ModelService{
 	@Override
 	public Model createModel(Model model) {
 		return modelRepository.save(model);
+	}
+
+	@Override
+	public List<Model> getModelByBrandId(Integer brandId) {
+		List<Model> models = modelRepository.findModelByBrandId(brandId);
+		return models;
 	}
 
 }

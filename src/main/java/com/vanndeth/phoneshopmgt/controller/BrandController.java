@@ -20,16 +20,21 @@ import org.springframework.web.bind.annotation.RestController;
 import com.vanndeth.phoneshopmgt.dto.BrandDTO;
 import com.vanndeth.phoneshopmgt.dto.PageDTO;
 import com.vanndeth.phoneshopmgt.entity.Brand;
+import com.vanndeth.phoneshopmgt.entity.Model;
 import com.vanndeth.phoneshopmgt.mapper.BrandMapper;
 import com.vanndeth.phoneshopmgt.service.BrandService;
+import com.vanndeth.phoneshopmgt.service.ModelService;
 import com.vanndeth.phoneshopmgt.service.implement.BrandServiceImplement;
 
+import lombok.RequiredArgsConstructor;
+
+@RequiredArgsConstructor
 @RestController
 @RequestMapping("brands")
 public class BrandController {
 	
-	@Autowired
-	private BrandService brandService;
+	private final BrandService brandService;
+	private final ModelService modelService;
 	
 	
 //	@RequestMapping(method = RequestMethod.POST)
@@ -70,6 +75,12 @@ public class BrandController {
 		PageDTO pageDTO = new PageDTO(page);
 		return ResponseEntity.ok(pageDTO);
 		
+	}
+	
+	@GetMapping("/{id}/models")
+	public ResponseEntity<?> getModelByBrandId(@PathVariable("id") Integer brandId) {
+		List<Model> models = modelService.getModelByBrandId(brandId);
+		return ResponseEntity.ok(models);
 	}
 
 }
