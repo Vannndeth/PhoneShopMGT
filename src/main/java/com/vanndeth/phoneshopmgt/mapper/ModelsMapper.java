@@ -11,8 +11,8 @@ import com.vanndeth.phoneshopmgt.service.BrandService;
 
 // use instead default method below
 @Mapper(componentModel = "spring", uses = {BrandService.class})
-public interface ModelMapper {
-	ModelMapper INSTANCE = Mappers.getMapper(ModelMapper.class);
+public interface ModelsMapper {
+	ModelsMapper INSTANCE = Mappers.getMapper(ModelsMapper.class);
 	
 	@Mapping(target = "brand", source = "brandId")
 	Model toModel(ModelDTO modelDTO);
