@@ -1,0 +1,48 @@
+databaseChangeLog:
+- changeSet:
+    id: 001_init_db_structure
+    author: artvandeth@gmail.com
+    changes:
+    - createTable:
+        tableName: brands
+        columns:
+        - column:
+            autoIncrement: true
+            constraints:
+              primaryKey: true
+            name: brand_id
+            type: BIGINT
+        - column:
+            name: brand_name
+            type: VARCHAR(50)
+    - createTable:
+        tableName: models
+        columns:
+        - column:
+            autoIncrement: true
+            constraints:
+              primaryKey: true
+            name: id
+            type: BIGINT
+        - column:
+            name: name
+            type: VARCHAR(50)
+        - column:
+            name: brand_id
+            type: BIGINT
+            constraints:
+              foreignKeyName: fk_models_brands
+              references: brands(brand_id)
+    -  alterSequence:  
+        cacheSize:  1  
+        cycle:  true  
+        dataType:  BIGINT  
+        incrementBy:  1  
+        maxValue:  371717  
+        minValue:  1  
+        sequenceName:  brands_brand_id_seq
+        startValue:  1
+                
+                
+                
+                
