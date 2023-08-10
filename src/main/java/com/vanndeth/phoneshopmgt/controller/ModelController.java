@@ -25,7 +25,7 @@ public class ModelController {
 	@PostMapping
 	public ResponseEntity<?> createModel(@RequestBody ModelDTO modelDTO) {
 		Model model = modelMapper.toModel(modelDTO);
-		model = modelService.createModel(model);
+		model = modelService.create(model);
 		return ResponseEntity.ok(modelMapper.tomModelDTO(model));
 	}
 }

@@ -10,8 +10,8 @@ public class ResourceNotFoundException extends ApiException{
 	}
 	*/
 	
-	public ResourceNotFoundException(String resource, Integer id) {
-		super(HttpStatus.NOT_FOUND, String.format("%s with id = %d not found", resource, id));
+	public ResourceNotFoundException(String resource, Long id) {
+		super(HttpStatus.NOT_FOUND, String.format("%s with id = %ld not found", resource, id));
 		// TODO Auto-generated constructor stub
 	}
 

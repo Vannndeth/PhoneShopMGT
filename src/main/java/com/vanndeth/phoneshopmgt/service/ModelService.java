@@ -5,6 +5,7 @@ import java.util.List;
 import com.vanndeth.phoneshopmgt.entity.Model;
 
 public interface ModelService {
-	Model createModel(Model model);
-	List<Model> getModelByBrandId(Integer brandId);
+	Model create(Model model);
+	Model getById(Long id);
+	List<Model> getModelByBrandId(Long brandId);
 }
