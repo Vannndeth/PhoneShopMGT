@@ -9,8 +9,8 @@ import com.vanndeth.phoneshopmgt.entity.Brand;
 
 public interface BrandService {
 	Brand create(Brand brand);
-	Brand getById(Integer id);
-	Brand update(Integer id, Brand newBrand);
+	Brand getById(Long id);
+	Brand update(Long id, Brand newBrand);
 	List<Brand> getBrands();
 	List<Brand> getBrands(Map<String, String> params);
 	Page<Brand> getBrandsPagination(Map<String, String> params);
